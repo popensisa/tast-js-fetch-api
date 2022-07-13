@@ -26,16 +26,26 @@ function myNewFunction(sel) {
 
 
 function nextPage() {
-    console.log('le')
+    currentPage++
+    const count = document.querySelector('#inputPerpage').value
+    fetchGet()
+        .then(users => showUsers(users, count, currentPage))
 }
+function prevPage() {
+    currentPage--
+    const count = document.querySelector('#inputPerpage').value
+    fetchGet()
+        .then(users => showUsers(users, count, currentPage))
+}
+
 
 const showUsers = (users, count) => {
     var loader = document.querySelector('.loader')
     const content = document.querySelector('.content-users')
 
-    let totalUsers = users.length
     let indexOfLast = currentPage * count
     let indexOfFirst = indexOfLast - count
+    let totalUsers = users.length
     let totalPages = Math.ceil(totalUsers / count)
 
     pagination(currentPage, totalPages)
@@ -72,7 +82,7 @@ const showUsers = (users, count) => {
 const pagination = (currentPage, totalPages) => {
     const pag = document.querySelector('.pagination')
     pag.innerHTML = `
-        <button type="button" class="prev-page btn btn-light font-weight-bold">←prev</button>
+        <button type="button" onclick='prevPage()' class="prev-page btn btn-light font-weight-bold">←prev</button>
             <input value="${currentPage}/${totalPages}" maxlength="2" type="text" id="inputCurrentPage" class="form-input current-page mx-2" disabled>
         <button type="button" onclick='nextPage()' class="next-page btn btn-light font-weight-bold">next→</button>
     `
