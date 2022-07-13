@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container collapse navbar-collapse d-flex justify-content-between">
+            <a class="navbar-brand" href="#">Github users</a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Search</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#">Favorite</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content">
+        <div class="container">
+            <h1 class="my-4">Search for Github users</h1>
+            <form class="d-flex flex-wrap">
+                <div class="item-m">
+                    <input type="text" class="form-control" id="searchInput" aria-describedby="textHelp">
+                    <div id="searchHelp" class="form-text">Введите имя пользователя которого хотите найти</div>
+                </div>
+                <select class="form-select sort-select item-m" aria-label="Пример выбора по умолчанию">
+                    <option selected value="asc">Desc</option>
+                    <option value="desc">Asc</option>
+                </select>
+                <select class="form-select item-m" aria-label="Пример выбора по умолчанию" onchange="myNewFunction(this)">
+                    <option selected value="asc">asc</option>
+                    <option value="desc">desc</option>
+                </select>
+                <div class="form-input item-m">
+                    <label class="form-label">Per page</label>
+                    <input value="4" type="number" maxlength="2" id="inputPerpage" class="form-input per-page" id="exampleCheck1">
+                </div>
+            </form>
+
+            <div class="content-users">
+                <h1 class="loader">Loading...</h1>
+            </div>
+            <div class="pagination my-5">
+                <!-- <button type="button" class="btn btn-light font-weight-bold">←prev</button>
+                    <input value="1" maxlength="2" type="number" id="inputCurrentPage" class="form-input current-page mx-2" disabled>
+                <button type="button" class="btn btn-light font-weight-bold">next→</button> -->
+            </div>
+        </div>
+    </div>
+
+    
+      
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+
+
+.form-select{
+    max-width: 200px;
+    max-height: 38px;
+}
+.item-m{
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.per-page{
+    max-width: 38px;
+    max-height: 38px;
+    text-align: center;
+}
+
+.current-page{
+    max-width: 60px;
+    max-height: 38px;
+    border: none;
+    border-radius: 15px;
+    background: #E8E8E9;
+    text-align: center;
+}
+
+.done{
+    display: none !important;
+}
