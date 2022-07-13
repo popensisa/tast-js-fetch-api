@@ -1,3 +1,5 @@
+const pag = document.querySelector('.pagination')
+
 let currentPage = 1
 let count = 4
 
@@ -26,16 +28,22 @@ function myNewFunction(sel) {
 
 
 function nextPage() {
-    currentPage++
-    const count = document.querySelector('#inputPerpage').value
-    fetchGet()
-        .then(users => showUsers(users, count, currentPage))
+    const inputCurrentPage = pag.querySelector('.current-page').value
+    var totalPages = inputCurrentPage.split('/')[1]
+    if(currentPage != totalPages) {
+        currentPage++
+        const count = document.querySelector('#inputPerpage').value
+        fetchGet().then(users => showUsers(users, count, currentPage))
+    }
+    return 
 }
 function prevPage() {
-    currentPage--
-    const count = document.querySelector('#inputPerpage').value
-    fetchGet()
-        .then(users => showUsers(users, count, currentPage))
+    if(currentPage != 1) {
+        currentPage--
+        const count = document.querySelector('#inputPerpage').value
+        fetchGet().then(users => showUsers(users, count, currentPage))
+    } 
+    return 
 }
 
 
