@@ -2,67 +2,12 @@ const pag = document.querySelector('.pagination')
 
 let currentPage = 1
 let count = 4
-
-const fetchGet = async (per_page) => {
-    var users = await fetch(`https://api.github.com/users`)
-        .then(res => res.json())
-    return users
-}
-const searchFetchGet = async (login, order, currentPage, per_page) => {
-    var users = await fetch(`https://api.github.com/search/users?q=${login}&per_page=${per_page}&page=${currentPage}&order=${order}&sort=followers`)
-        .then(res => res.json())
-    return users
-}
-
 var gotUsers = []
+
 fetchGet()
     .then(users => {
         showUsers(users, count, currentPage)
     })
-
-
-function orderBy(sel) {
-    const order = sel.options[sel.selectedIndex].value
-    const login = document.querySelector('#searchInput').value
-    const count = document.querySelector('#inputPerpage').value
-    let currentPage = document.querySelector('.current-page').value
-    const per_page = document.querySelector('.per-page').value 
-
-    searchFetchGet(login, order, currentPage, per_page)
-        .then(users => {
-            showUsers(users, count, currentPage)
-            users.items.map(item => gotUsers.push(item))
-        })
-    
-}
-
-
-function nextPage() {
-    const login = document.querySelector('#searchInput').value
-    const order = document.querySelector('.form-select-sort').value
-    const count = document.querySelector('#inputPerpage').value
-    const per_page = document.querySelector('.per-page').value
-    currentPage = currentPage + 1
-    searchFetchGet(login, order, currentPage, per_page)
-        .then(users => showUsers(users, count, currentPage))
-}
-function prevPage() {
-    if(currentPage != 1) {
-        const login = document.querySelector('#searchInput').value
-        const order = document.querySelector('.form-select-sort').value
-        const count = document.querySelector('#inputPerpage').value
-        const per_page = document.querySelector('.per-page').value
-        currentPage = currentPage - 1
-        if (order == 'asc') {
-            searchFetchGet(login, order, currentPage, per_page)
-                .then(users => showUsers(users, count, currentPage))
-        } else {
-            searchFetchGet(login, order, currentPage, per_page)
-                .then(users => showUsers(users, count, currentPage))
-        }
-    } 
-    return 
-}
 
 
 const showUsers = (users, count, currentPage) => {
@@ -165,86 +110,4 @@ const pagination = (currentPage, totalPages) => {
             <input value="${currentPage}" onchange="changePage(this.value)" maxlength="2" type="text" id="inputCurrentPage" class="form-input current-page mx-2">
         <button type="button" onclick='nextPage()' class="next-page btn btn-light font-weight-bold">next→</button>
     `
-}
-
-function changePage(currentPage) {
-    const order = document.querySelector('.form-select-sort').value
-    const per_page = document.querySelector('.per-page').value
-    const login = document.querySelector('#searchInput').value
-    if (order == 'asc') {
-        searchFetchGet(login, order, currentPage, per_page)
-            .then(users => showUsers(users, per_page, currentPage))
-    } else {
-        searchFetchGet(login, order, currentPage, per_page)
-            .then(users => showUsers(users, per_page, currentPage))
-    }
-}
-
-
-
-document.querySelector('#searchInput').addEventListener('change', function () {
-    const login = this.value
-    const order = document.querySelector('.form-select-sort').value
-    const count = document.querySelector('#inputPerpage').value
-    const per_page = document.querySelector('.per-page').value
-
-    if (login) {
-        if (order == 'asc') {
-            searchFetchGet(login, order, currentPage, per_page)
-                .then(users => showUsers(users, count, currentPage))
-        } else {
-            searchFetchGet(login, order, currentPage, per_page)
-                .then(users => showUsers(users, count, currentPage))
-        }
-    } else {
-        fetchGet()
-            .then(users => {
-                showUsers(users, count, currentPage)
-                users.map(item => gotUsers.push(item))
-            })
-    }
-})
-
-const countPerPage = document.querySelector('#inputPerpage').addEventListener('change', function () {
-    var per_page = this.value
-    const order = document.querySelector('.form-select-sort').value
-    var currentPage = document.querySelector('.current-page').value
-    const login = document.querySelector('#searchInput').value
-    currentPage = currentPage.slice('/')[0]
-    
-    if (order == 'asc') {
-        searchFetchGet(login, order, currentPage, per_page)
-            .then(users => showUsers(users, per_page, currentPage))
-    } else {
-        searchFetchGet(login, order, currentPage, per_page)
-            .then(users => showUsers(users, per_page, currentPage))
-    }
-})
-
-
-const addFavorite = (id) => {
-    console.log(gotUsers)
-    var favoriteUser = gotUsers.filter(item => item.id == id)
-    var user = localStorage.getItem('users')
-    user = JSON.parse(user)
-    
-    if (user) {
-        var alreadyExist = user.filter(item => item.id == id)
-        if (alreadyExist.length) return alert('Пользователь уже добавлен')  
-        favoriteAllUsers = [...user, ...favoriteUser]
-        localStorage.setItem('users', JSON.stringify(favoriteAllUsers))
-    } else {
-        localStorage.setItem('users', JSON.stringify(favoriteUser))
-    }
-
-    const login = document.querySelector('#searchInput').value
-    const order = document.querySelector('.form-select-sort').value
-    const count = document.querySelector('#inputPerpage').value
-    const per_page = document.querySelector('.per-page').value
-    searchFetchGet(login, order, currentPage, per_page)
-        .then(users => showUsers(users, count, currentPage))
-}
-
-const showRep = () => {
-    var user = localStorage.removeItem('users')
 }

@@ -1,8 +1,4 @@
 
-console.log('GELLO')
-
-
-
 const showFavoriteUsers = () => {
     var favorite = document.querySelector('.favorites-items')
 
