@@ -44,7 +44,7 @@ const showUsers = (users, count, currentPage) => {
                         </div>
                         <div class="btns d-flex flex-column my-2">
                             <button onclick='addFavorite(${users.items[i].id})' type="button" class="${foundUser[0] ? 'btn btn-success mb-2' : 'btn btn-secondary mb-2'}">Add favorite</button>
-                            <button onclick='showRep()' type="button" class="btn btn-secondary">Show repository</button>
+                            <a href='./repository.html' type="button" class="btn btn-secondary">Show repository</a>
                         </div>
                     </div>
                 </div> 
