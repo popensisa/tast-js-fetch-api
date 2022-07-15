@@ -1,10 +1,14 @@
 
+
 const showFavoriteUsers = () => {
     var favorite = document.querySelector('.favorites-items')
+    var wrapperButtonDelete = document.querySelector('.btn-delete')
 
     var favoriteUsers = localStorage.getItem('users')
     var favoriteUsers = JSON.parse(favoriteUsers)
-    console.log(favoriteUsers)
+    
+    favorite.innerHTML = ``
+    wrapperButtonDelete.innerHTML = ``
     if (favoriteUsers) {
         let i
         for (i in favoriteUsers) {
@@ -25,9 +29,12 @@ const showFavoriteUsers = () => {
                 </div>
             </div> 
             `
+            wrapperButtonDelete.innerHTML = `
+            <button class="btn btn-danger" onclick="deleteAllFavorite()">Delete all</button>
+            `
         }
     } else {
-        favorite.innerHTML += `<h1>Добавьте пользователей</h1>`
+        favorite.innerHTML = `<h1>Добавьте пользователей</h1>`
     }
 }
 showFavoriteUsers()
@@ -39,8 +46,10 @@ const removeFavoriteItem = (id) => {
     if(users) {
         localStorage.setItem('users', JSON.stringify(users))
     } 
+    showFavoriteUsers()
 }
 
 function deleteAllFavorite () {
     localStorage.removeItem('users')
+    showFavoriteUsers()
 }

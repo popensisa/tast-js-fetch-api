@@ -6,8 +6,13 @@ function nextPage() {
     const per_page = document.querySelector('.per-page').value
     const sort = document.querySelector('.sort-select-sortBy').value
     currentPage = currentPage + 1
-    searchFetchGet(login, order, currentPage, per_page, sort)
-        .then(users => showUsers(users, count, currentPage))
+    if (login) {
+        searchFetchGet(login, order, currentPage, per_page, sort)
+            .then(users => showUsers(users, count, currentPage))
+    } else {
+        fetchGet(order, currentPage, per_page, sort)
+            .then(users => showUsers(users, count, currentPage))
+    }
 }
 function prevPage() {
     if(currentPage != 1) {
@@ -17,8 +22,13 @@ function prevPage() {
         const per_page = document.querySelector('.per-page').value
         const sort = document.querySelector('.sort-select-sortBy').value
         currentPage = currentPage - 1
-        searchFetchGet(login, order, currentPage, per_page, sort)
-            .then(users => showUsers(users, count, currentPage))
+        if (login) {
+            searchFetchGet(login, order, currentPage, per_page, sort)
+                .then(users => showUsers(users, count, currentPage))
+        } else {
+            fetchGet(order, currentPage, per_page, sort)
+                .then(users => showUsers(users, count, currentPage))
+        }
     } 
     return 
 }
@@ -28,6 +38,11 @@ function changePage(currentPage) {
     const per_page = document.querySelector('.per-page').value
     const login = document.querySelector('#searchInput').value
     const sort = document.querySelector('.sort-select-sortBy').value
+    if (login) {
         searchFetchGet(login, order, currentPage, per_page, sort)
-            .then(users => showUsers(users, per_page, currentPage))
+            .then(users => showUsers(users, count, currentPage))
+    } else {
+        fetchGet(order, currentPage, per_page, sort)
+            .then(users => showUsers(users, count, currentPage))
+    }
 }

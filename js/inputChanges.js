@@ -8,7 +8,10 @@ document.querySelector('#searchInput').addEventListener('change', function () {
     
     if (login) {
         searchFetchGet(login, order, currentPage, per_page, sort)
-            .then(users => showUsers(users, count, currentPage))
+            .then(users => {
+                showUsers(users, count, currentPage)
+                users.items.map(item => gotUsers.push(item))
+            })
     } else {
         fetchGet()
             .then(users => showUsers(users, count, currentPage))

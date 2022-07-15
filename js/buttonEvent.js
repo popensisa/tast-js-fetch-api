@@ -4,10 +4,10 @@ const addFavorite = (id) => {
     var favoriteUser = gotUsers.filter(item => item.id == id)
     var user = localStorage.getItem('users')
     user = JSON.parse(user)
-    
+      
     if (user) {
-        var alreadyExist = user.filter(item => item.id == id)
-        if (alreadyExist.length) return alert('Пользователь уже добавлен')  
+        var alreadyExist = user.filter(item => item.id == id)  
+        if (alreadyExist.length) alert ('УЖЕ ДОБАВЛЕН')
         favoriteAllUsers = [...user, ...favoriteUser]
         localStorage.setItem('users', JSON.stringify(favoriteAllUsers))
     } else {
@@ -19,8 +19,14 @@ const addFavorite = (id) => {
     const count = document.querySelector('#inputPerpage').value
     const per_page = document.querySelector('.per-page').value
     const sort = document.querySelector('.sort-select-sortBy').value
-    searchFetchGet(login, order, currentPage, per_page, sort)
-        .then(users => showUsers(users, count, currentPage))
+
+    if (login) {
+        searchFetchGet(login, order, currentPage, per_page, sort)
+            .then(users => showUsers(users, count, currentPage))
+    } else {
+        fetchGet(order, currentPage, per_page, sort)
+            .then(users => showUsers(users, count, currentPage))
+    }
 }
 
 const showRep = () => {
