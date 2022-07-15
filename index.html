@@ -14,10 +14,10 @@
             <a class="navbar-brand" href="#">Github users</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Search</a>
+                <a class="nav-link active" aria-current="page" href="./index.html">Search</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Favorite</a>
+                <a class="nav-link" href="./favorite.html">Favorite</a>
                 </li>
             </ul>
         </div>
@@ -28,14 +28,14 @@
             <h1 class="my-4">Search for Github users</h1>
             <form class="d-flex flex-wrap">
                 <div class="item-m">
-                    <input type="text" class="form-control" id="searchInput" aria-describedby="textHelp">
+                    <input type="text" value="m" class="form-control" id="searchInput" aria-describedby="textHelp">
                     <div id="searchHelp" class="form-text">Введите имя пользователя которого хотите найти</div>
                 </div>
                 <select class="form-select sort-select item-m" aria-label="Пример выбора по умолчанию">
-                    <option selected value="asc">Desc</option>
+                    <option selected value="followers">followers</option>
                     <option value="desc">Asc</option>
                 </select>
-                <select class="form-select form-select-sort item-m" aria-label="Пример выбора по умолчанию" onchange="myNewFunction(this)">
+                <select class="form-select form-select-sort item-m" aria-label="Пример выбора по умолчанию" onchange="orderBy(this)">
                     <option selected value="asc">asc</option>
                     <option value="desc">desc</option>
                 </select>
