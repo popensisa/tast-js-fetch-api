@@ -8,10 +8,16 @@ function nextPage() {
     currentPage = currentPage + 1
     if (login) {
         searchFetchGet(login, order, currentPage, per_page, sort)
-            .then(users => showUsers(users, count, currentPage))
+            .then(users => {
+                showUsers(users, count, currentPage)
+                users.items.map(item => gotUsers.push(item))
+            })
     } else {
         fetchGet(order, currentPage, per_page, sort)
-            .then(users => showUsers(users, count, currentPage))
+            .then(users => {
+                showUsers(users, count, currentPage)
+                gotUsers = users
+            })
     }
 }
 function prevPage() {
@@ -24,10 +30,16 @@ function prevPage() {
         currentPage = currentPage - 1
         if (login) {
             searchFetchGet(login, order, currentPage, per_page, sort)
-                .then(users => showUsers(users, count, currentPage))
+                .then(users => {
+                    showUsers(users, count, currentPage)
+                    gotUsers = users
+                })
         } else {
             fetchGet(order, currentPage, per_page, sort)
-                .then(users => showUsers(users, count, currentPage))
+                .then(users => {
+                    showUsers(users, count, currentPage)
+                    gotUsers = users
+                })
         }
     } 
     return 
@@ -40,9 +52,15 @@ function changePage(currentPage) {
     const sort = document.querySelector('.sort-select-sortBy').value
     if (login) {
         searchFetchGet(login, order, currentPage, per_page, sort)
-            .then(users => showUsers(users, count, currentPage))
+            .then(users => {
+                showUsers(users, count, currentPage)
+                gotUsers = users
+            })
     } else {
         fetchGet(order, currentPage, per_page, sort)
-            .then(users => showUsers(users, count, currentPage))
+            .then(users => {
+                showUsers(users, count, currentPage)
+                gotUsers = users
+            })
     }
 }

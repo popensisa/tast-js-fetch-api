@@ -10,11 +10,14 @@ document.querySelector('#searchInput').addEventListener('change', function () {
         searchFetchGet(login, order, currentPage, per_page, sort)
             .then(users => {
                 showUsers(users, count, currentPage)
-                users.items.map(item => gotUsers.push(item))
+                gotUsers = users
             })
     } else {
-        fetchGet()
-            .then(users => showUsers(users, count, currentPage))
+        fetchGet(order, currentPage, per_page, sort)
+            .then(users => {
+                showUsers(users, count, currentPage)
+                gotUsers = users
+            })
     }
 
 })
@@ -26,6 +29,18 @@ const countPerPage = document.querySelector('#inputPerpage').addEventListener('c
     const login = document.querySelector('#searchInput').value
     const sort = document.querySelector('.sort-select-sortBy').value
     currentPage = currentPage.slice('/')[0]
+    
+    if (login) {
         searchFetchGet(login, order, currentPage, per_page, sort)
-            .then(users => showUsers(users, per_page, currentPage))
+            .then(users => {
+                showUsers(users, count, currentPage)
+                gotUsers = users
+            })
+    } else {
+        fetchGet(order, currentPage, per_page, sort)
+            .then(users => {
+                showUsers(users, count, currentPage)
+                gotUsers = users
+            })
+    }
 })

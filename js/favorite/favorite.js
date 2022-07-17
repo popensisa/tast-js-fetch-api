@@ -43,9 +43,11 @@ const removeFavoriteItem = (id) => {
     var users = localStorage.getItem('users')
     users = JSON.parse(users)
     users = users.filter(item => item.id != id)
-    if(users) {
+    if(users.length) {
         localStorage.setItem('users', JSON.stringify(users))
-    } 
+    } else {
+        localStorage.removeItem('users')
+    }
     showFavoriteUsers()
 }
 

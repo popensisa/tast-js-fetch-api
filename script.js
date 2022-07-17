@@ -11,19 +11,20 @@ var gotUsers = []
 fetchGet(order, currentPage, per_page, sort)
     .then(users => {
         showUsers(users, count, currentPage)
-        users.items.map(item => gotUsers.push(item))
+        gotUsers = users
     })
 
 
 const showUsers = (users, count, currentPage) => {
     var loader = document.querySelector('.loader')
     const content = document.querySelector('.content-users')
-   
+
     let totalUsers = users.total_count
     let totalPages = Math.ceil(totalUsers / count)
     pagination(currentPage, totalPages)
 
     content.innerHTML = ``
+    
     if (users) {
         let i
         var user = localStorage.getItem('users')
@@ -44,7 +45,7 @@ const showUsers = (users, count, currentPage) => {
                         </div>
                         <div class="btns d-flex flex-column my-2">
                             <button onclick='addFavorite(${users.items[i].id})' type="button" class="${foundUser[0] ? 'btn btn-success mb-2' : 'btn btn-secondary mb-2'}">Add favorite</button>
-                            <a href='./repository.html' type="button" class="btn btn-secondary">Show repository</a>
+                            <button onclick='showRepository(${users.items[i].id})' type="button" class="btn btn-secondary">Show repository</button>
                         </div>
                     </div>
                 </div> 
@@ -62,7 +63,7 @@ const showUsers = (users, count, currentPage) => {
                         </div>
                         <div class="btns d-flex flex-column my-2">
                             <button onclick='addFavorite(${users.items[i].id})' type="button" class="btn btn-secondary mb-2">Add favorite</button>
-                            <button onclick='showRep()' type="button" class="btn btn-secondary">Show repository</button>
+                            <button onclick='showRepository(${users.items[i].id})' type="button" class="btn btn-secondary">Show repository</button>
                         </div>
                     </div>
                 </div> 

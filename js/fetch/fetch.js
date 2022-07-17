@@ -9,7 +9,7 @@ const searchFetchGet = async (login, order, currentPage, per_page, sort) => {
         .then(res => res.json())
     return users
 }
-const fetchUserRep = async (login) => {
+const fetchUserRepository = async (login) => {
     var user = await fetch(`https://api.github.com/users/${login}/repos`)
         .then(res => res.json())
     return user
