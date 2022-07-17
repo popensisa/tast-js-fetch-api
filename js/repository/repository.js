@@ -14,16 +14,17 @@ function fillRepository() {
         foundUser = user && user.filter(item => item.id == userRepository[0].owner.id)
         aboutUser.innerHTML = `
         <div class="card my-2" style="width: 100%;">
-
             <div class="card-body d-flex justify-content-between align-items-center flex-wrap">
-                <div class="about-user d-flex justify-content-center flex-wrap">
+                <div class="about-user d-flex flex-wrap">
                     <img src="${userRepository[0].owner.avatar_url}" width='100px' alt="Фотка пользователа">
                     <div class="about-user-text mx-2 d-flex flex-column justify-content-evenly flex-wrap">
-                        <h3 class='login'>${userRepository[0].owner.login}</h3>
+                        <h3 class='card-title login'>${userRepository[0].owner.login}</h3>
                         <a href='${userRepository[0].owner.url}'>link to github</a>
                     </div>
                 </div>
+                <div class="btns d-flex justify-content-center my-2">
                 <button onclick='addFavoriteFromRepository(${JSON.stringify(userRepository[0].owner)})' type="button" class="${foundUser ? 'btn btn-success mb-2' : 'btn btn-secondary mb-2'}">Add favorite</button>
+                </div>
             </div>
         </div> 
         `
@@ -35,10 +36,10 @@ function fillRepository() {
                 <div class="card-body d-flex justify-content-between align-items-center flex-wrap">
                     <div class="about-user d-flex justify-content-center flex-wrap">
                         <div class="about-user-text mx-2 d-flex flex-column justify-content-evenly flex-wrap">
-                            <h3 class='login'>${userRepository[i].name}</h3>
+                            <h3 class='card-title login'>${userRepository[i].name}</h3>
                         </div>
                     </div>
-                    <div class="btns d-flex flex-column my-2">
+                    <div class="btns d-flex justify-content-center my-2">
                         <button type="button" class="btn btn-secondary mb-2">Go to github</button>
                     </div>
                 </div>

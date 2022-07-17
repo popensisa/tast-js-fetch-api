@@ -15,7 +15,7 @@ const showFavoriteUsers = () => {
             favorite.innerHTML += `
             <div class="card my-2" style="width: 100%;">
                 <div class="card-body d-flex justify-content-between align-items-center flex-wrap">
-                    <div class="about-user d-flex justify-content-center flex-wrap">
+                    <div class="about-user d-flex flex-wrap">
                         <img src="${favoriteUsers[i].avatar_url}" width='100px' alt="Фотка пользователа">
                         <div class="about-user-text mx-2 d-flex flex-column justify-content-evenly flex-wrap">
                             <h3 class='login'>${favoriteUsers[i].login}</h3>

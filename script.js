@@ -24,8 +24,9 @@ const showUsers = (users, count, currentPage) => {
     pagination(currentPage, totalPages)
 
     content.innerHTML = ``
+    console.log(users.message)
     
-    if (users) {
+    if (users.items) {
         let i
         var user = localStorage.getItem('users')
         user = JSON.parse(user)
@@ -54,7 +55,7 @@ const showUsers = (users, count, currentPage) => {
                 content.innerHTML += `
                 <div class="card my-2" style="width: 100%;">
                     <div class="card-body d-flex justify-content-between align-items-center flex-wrap">
-                        <div class="about-user d-flex justify-content-center flex-wrap">
+                        <div class="about-user d-flex flex-wrap">
                             <img src="${users.items[i].avatar_url}" width='100px' alt="Фотка пользователа">
                             <div class="about-user-text mx-2 d-flex flex-column justify-content-evenly flex-wrap">
                                 <h3 class='login'>${users.items[i].login}</h3>
@@ -71,8 +72,7 @@ const showUsers = (users, count, currentPage) => {
             }
         }
     } else {
-        loader.classList.add('done')
-        content.innerHTML += `<h1>ERROR</h1>`
+        content.innerHTML = `<h1>${users.message}</h1>`
     }
 }
 
