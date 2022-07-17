@@ -19,7 +19,7 @@ const showFavoriteUsers = () => {
                         <img src="${favoriteUsers[i].avatar_url}" width='100px' alt="Фотка пользователа">
                         <div class="about-user-text mx-2 d-flex flex-column justify-content-evenly flex-wrap">
                             <h3 class='login'>${favoriteUsers[i].login}</h3>
-                            <a href='${favoriteUsers[i].url}'>link to github</a>
+                            <a href='${favoriteUsers[i].html_url}'>link to github</a>
                         </div>
                     </div>
                     <div class="btns d-flex flex-column my-2">
@@ -30,7 +30,7 @@ const showFavoriteUsers = () => {
             </div> 
             `
             wrapperButtonDelete.innerHTML = `
-            <button class="btn btn-danger" onclick="deleteAllFavorite()">Delete all</button>
+            <button class="btn btn-danger m-4" onclick="deleteAllFavorite()">Delete all</button>
             `
         }
     } else {

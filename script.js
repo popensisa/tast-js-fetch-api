@@ -59,7 +59,7 @@ const showUsers = (users, count, currentPage) => {
                             <img src="${users.items[i].avatar_url}" width='100px' alt="Фотка пользователа">
                             <div class="about-user-text mx-2 d-flex flex-column justify-content-evenly flex-wrap">
                                 <h3 class='login'>${users.items[i].login}</h3>
-                                <a href='${users.items[i].url}'>link to github</a>
+                                <a href='${users.items[i].html_url}'>link to github</a>
                             </div>
                         </div>
                         <div class="btns d-flex flex-column my-2">

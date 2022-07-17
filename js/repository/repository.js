@@ -19,7 +19,7 @@ function fillRepository() {
                     <img src="${userRepository[0].owner.avatar_url}" width='100px' alt="Фотка пользователа">
                     <div class="about-user-text mx-2 d-flex flex-column justify-content-evenly flex-wrap">
                         <h3 class='card-title login'>${userRepository[0].owner.login}</h3>
-                        <a href='${userRepository[0].owner.url}'>link to github</a>
+                        <a href='${userRepository[0].owner.html_url}'>link to github</a>
                     </div>
                 </div>
                 <div class="btns d-flex justify-content-center my-2">
@@ -40,7 +40,7 @@ function fillRepository() {
                         </div>
                     </div>
                     <div class="btns d-flex justify-content-center my-2">
-                        <button type="button" class="btn btn-secondary mb-2">Go to github</button>
+                        <a href='${userRepository[i].html_url}' type="button" class="btn btn-secondary mb-2">Go to github</a>
                     </div>
                 </div>
             </div> 
