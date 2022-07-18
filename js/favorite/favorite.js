@@ -24,7 +24,7 @@ const showFavoriteUsers = () => {
                     </div>
                     <div class="btns d-flex flex-column my-2">
                         <button onclick='removeFavoriteItem(${favoriteUsers[i].id})' type="button" class="btn btn-success mb-2">Add favorite</button>
-                        <button onclick='showRep()' type="button" class="btn btn-secondary">Show repository</button>
+                        <button onclick='showRepository(${favoriteUsers[i].id})' type="button" class="btn btn-secondary">Show repository</button>
                     </div>
                 </div>
             </div> 
@@ -54,4 +54,15 @@ const removeFavoriteItem = (id) => {
 function deleteAllFavorite () {
     localStorage.removeItem('users')
     showFavoriteUsers()
+}
+
+const showRepository = (id) => {
+    var usersAll = localStorage.getItem('users')
+    usersAll = JSON.parse(usersAll)
+    user = usersAll.filter(item => item.id == id)
+
+    fetchUserRepository(user[0].login)
+        .then(user => {
+            localStorage.setItem('userRepository', JSON.stringify(user))
+        }).then(() => window.location.href = 'repository.html')
 }

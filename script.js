@@ -24,7 +24,6 @@ const showUsers = (users, count, currentPage) => {
     pagination(currentPage, totalPages)
 
     content.innerHTML = ``
-    console.log(users.message)
     
     if (users.items) {
         let i
